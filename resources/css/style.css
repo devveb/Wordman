@@ -1,0 +1,175 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(http://fonts.googleapis.com/css?family=Pathway+Gothic+One);
+
+
+ a{
+	color: #ccd500;
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: underline;
+	color: #a9b119;
+}
+
+ html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+}
+b{
+	font-weight: 600;
+}
+
+
+/* Titulos
+-------------------------------------------------------------------------*/
+h1{
+	width: 100%;
+	font-size: 40px;
+	margin-bottom: 25px;
+}
+h2{
+	color: #000000;
+    display: table-cell;
+    float: left;
+    font-size: 45px;
+    line-height: 40px;
+    margin: 0 0 50px;
+    text-align: center;
+    width: 100%;
+    font-weight: 300;
+}
+h2 span{
+	font-weight: 400;
+}
+h3{
+	float: left;
+	width: 100%;
+	margin: 0 0 20px 0;
+	font-size:40px;
+	font-family: 'Lato', 'sans-serif';
+	font-weight: 300;
+}
+h4{
+    display: table-cell;
+    float: left;
+    font-size: 35px;
+    line-height: 31px;
+    margin: 0 0 0;
+    text-align: center;
+    width: 100%;
+    font-weight: 400;
+}
+
+ /*
+    * Header
+    */
+header {
+    margin-top: 10px;
+	background-color: #DCD293;
+    border-bottom: 10px solid #66D4FF;
+    border-top: 20px dotted #A48E4E;
+    padding: 25px;
+}
+
+header p {
+	color:#333;
+    font-size: 25px;
+    text-align: center;
+}
+
+header a {
+	color: #6C5726;
+    font-weight: 700;
+}
+
+/*
+ * Airlines
+ */
+
+ /*
+  * SlotMachine
+  */
+
+ #randomize .row > div.col-xs-4 > div {
+    padding-top: 40px;
+    padding-left: 40px;
+    width: 175px;
+    height: 175px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin: auto;
+}
+
+ .btn-group-randomize div {
+    width: auto !important;
+}
+
+/*
+ * Watch
+ */
+
+ #watch h1 {
+    margin: 0;
+}
+
+ #watch .content > div {
+    clear:both;
+    padding-top: 10px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+ #watch1 > div {
+    color: #fff;
+    height: 55px;
+    width: 55px;
+    font-size: 55px;
+}
+
+ /*
+ * Triky
+ */
+
+ #triky .row > div {
+    background-color: #fff;
+    width: 225px;
+    height: 225px;
+    border-radius: 50%;
+    padding-top: 40px;
+    padding-left: 35px;
+    left: -35px;
+}
+
+ /*
+ * Casino
+ */
+
+ #casino h1 {
+    margin: 0;
+}
+
+ #casino .content > div {
+    clear:both;
+    padding-top: 200px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+ /*
+ * Footer
+ */
+footer{
+	width:100%;
+	background-color: #6C5726;
+	border-top: 20px dotted #A48E4E;
+    height: 180px;
+    padding-top: 40px;
+    text-align: center;
+    color: #DCD293;
+}
+
+

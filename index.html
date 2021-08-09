@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="keyword" content="wordslotmachine,word,slotmachine">
+    <title>Hello, I'm Tin Wordman.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="/resources/css/wordslot.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/resources/css/jquery.slotmachine.css" type="text/css" media="screen"/>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+
+    <script type="text/javascript" src="/resources/js/jquery.slotmachine.js"></script>
+
+</head>
+
+<style>
+    .textBoard {
+        height: 100px;
+        line-height: 100px;
+    }
+</style>
+
+<body>
+
+<div id="randomize" style="width: 450px;height: 500px;margin-top: 20px; background-image: linear-gradient(orange, turquoise);">
+    <div style="text-align: right;"><h4>Tin Wordman&nbsp&nbsp</h4></div>
+    <div class="" style="text-align: center; width: 100%">
+        <!-- 				<h1>wordS a LOT!</h1> -->
+        <div class="abv">
+
+            <div style="width: 170px; float: right; clear: both;">
+                <textarea class=" " id="wordset1" rows="6" cols="10" style="resize: none;width: 170px;"
+                          placeholder=""></textarea>
+                <button class="btn btn-secondary" type="button" style="width: 100%;" onclick="makeWordSet1()">
+                    <span class="glyphicon glyphicon-chevron-down" style="font-size: 25px;color: white;"></span>
+                </button>
+                <div class="word_box">
+                    <div id="machine1" class="randomizeMachine">
+                        <div class="textBoard">
+
+                            <span class="glyphicon glyphicon-eye-open"
+                                  style="font-size: 25px; line-height: 90px;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 170px;">
+                <textarea class=" " id="wordset2" rows="6" cols="10" style="resize: none;width: 170px;"
+                          placeholder="한 줄씩 &#13;&#10;쓰세요.&#13;&#10;화살표&#13;&#10;누르고,"></textarea>
+                <button class="btn btn-secondary" type="button" style="width: 100%;" onclick="makeWordSet2()">
+                    <span class="glyphicon glyphicon-chevron-down" style="font-size: 25px;color: white;"></span>
+                </button>
+                <div class="word_box">
+                    <div id="machine2" class="randomizeMachine">
+                        <div class="textBoard">
+                            <span class="glyphicon glyphicon-eye-open"
+                                  style="font-size: 25px; line-height: 90px;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div>
+
+                <button class="btn btn-secondary" type="button" style="width: 100%;" id="ranomizeButton">
+                    <span class="glyphicon glyphicon-bell" style="font-size: 25px;color: white;"></span>
+                </button>
+
+                <div style="padding: 23px;">
+                    <input type="text" id="result2" style="text-align:center " readonly="readonly"/>
+                </div>
+                <button class="btn btn-secondary" type="button" style="width: 40%;" onclick="">
+                    <span class="glyphicon glyphicon glyphicon-heart-empty" style="font-size: 25px;color: white;"></span>
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+    <div style="margin-top: 20px;">
+        <table  style="margin: 0 auto;">
+            <thead>
+                <tr>
+                    <td>만들어진 단어들</td>
+                </tr>
+            </thead>
+            <tbody id="listTb">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div style="text-align: right;padding: 10px;bottom: 0;position: fixed;right: 0;">
+    <a href="http://devveb.github.io/" target="_blank">by tae.</a>
+</div>
+<script>
+    let machine1 = null;
+    let machine2 = null;
+    let fromm1 = "";
+    let fromm2 = "";
+
+    $(document).ready(function () {
+        list();
+
+        machine1 = $("#machine1").slotMachine({
+            active: 0,
+            delay: 500
+        });
+
+        machine2 = $("#machine2").slotMachine({
+            active: 1,
+            delay: 500,
+            direction: 'down'
+        });
+
+        function onComplete() {
+
+            switch (this.element[0].id) {
+                case 'machine1':
+
+                    const count1 = $("#machine1 > .slotMachineContainer >.textBoard").length;
+                    const idx1 = (this.active + 1) % count1;
+                    fromm1 = $("#machine1 > .slotMachineContainer >.textBoard:eq(" + idx1 + ")").text();
+                    break;
+                case 'machine2':
+                    const count2 = $("#machine2 > .slotMachineContainer >.textBoard").length;
+                    const idx2 = (this.active + 1) % count2;
+                    fromm2 = $("#machine2 > .slotMachineContainer >.textBoard:eq(" + idx2 + ")").text();
+                    break;
+            }
+
+
+            $("#result2").val(fromm2 + " " + fromm1);
+            // $.post("https://api.ggooms.win/api/save", {w: $("#result2").val()}, function(result){
+            //     list();
+            // });
+
+        }
+
+        $("#ranomizeButton").click(function () {
+            machine1.shuffle(2, onComplete);
+            machine2.shuffle(2, onComplete);
+
+            $.post("https://api.ggooms.win/api/save", {w: $("#result2").val()}, function(result){
+                list();
+            });
+
+        });
+
+
+    });
+
+
+    function save(){
+        var flag = confirm("공유하시겠습니까?")
+        if(flag){
+            if($("#result2").trim().val().length <= 1){
+                alert("too short!");
+                return false;
+            }
+
+            $.post("https://api.ggooms.win/api/save", {w: $("#result2").val()}, function(result){
+                $("#result2").val("");
+                list();
+            });
+        }else{
+            return false;
+        }
+    }
+    function  list() {
+
+        $("#listTb").empty();
+        $.get("https://api.ggooms.win/api/list",{async:false},function(result){
+
+            var html="";
+            $.each(result,function(i,v){
+                html="<tr><td>"+v.word+"</td></tr>";
+                $("#listTb").append(html);
+                setTimeout(100);
+            })
+            //$("#listTb").append(html);
+        });
+
+    }
+
+    function makeWordSet1() {
+        if ($('#wordset1').val() === "") {
+            $("#wordset1").focus();
+            alert("단어를 입력해주세요.");
+        }
+
+        let htmlText = '';
+        const arrayOfLines = $('#wordset1').val().trim().split('\n');
+
+        arrayOfLines.forEach(function (item) {
+            htmlText = htmlText + '<div class="textBoard">' + item + '</div>';
+        });
+
+        $("#machine1").empty().append(htmlText + '</div>');
+        //+"> .slotMachineContainer"
+        machine1 = $("#machine1").slotMachine({
+            active: 0,
+            delay: 500
+        });
+    }
+
+    function makeWordSet2() {
+        if ($('#wordset2').val() == "") {
+            $("#wordset2").focus();
+            alert("단어를 입력해주세요.");
+        }
+        let htmlText = '';
+        const arrayOfLines = $('#wordset2').val().trim().split('\n');
+
+        arrayOfLines.forEach(function (item) {
+            htmlText = htmlText + '<div class="textBoard">' + item + '</div>';
+        });
+
+        $("#machine2").empty().append(htmlText + '</div>');
+        //+"> .slotMachineContainer"
+        machine2 = $("#machine2").slotMachine({
+            active: 0,
+            delay: 500
+        });
+    }
+
+
+</script>
+
+</body>
+</html>
